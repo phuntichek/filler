@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: phuntik <phuntik@student.42.fr>            +#+  +:+       +#+         #
+#    By: anastasiaseliseva <anastasiaseliseva@st    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/03 13:14:23 by fmelda            #+#    #+#              #
-#    Updated: 2020/05/25 19:10:40 by phuntik          ###   ########.fr        #
+#    Updated: 2020/06/11 21:46:22 by anastasiase      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC_FLS	=		main.c  \
 				game.c  \
 				print.c \
 				free.c  \
+				parse.c
 
 # ------------  FILEPATHS  --------------------------------------------------- #
 SRCS	=		$(addprefix $(SRC_DIR)/, $(SRC_FLS))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filler.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phuntik <phuntik@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anastasiaseliseva <anastasiaseliseva@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 17:34:17 by phuntik           #+#    #+#             */
-/*   Updated: 2020/05/21 19:41:33 by phuntik          ###   ########.fr       */
+/*   Updated: 2020/06/11 22:09:56 by anastasiase      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,10 @@ void			find_min_score(t_filler *fil);
 void			open_file();
 void			print_in_file(char c, char *str, int value);
 void			all_free(t_filler *fil);
+bool			parse_fighter(t_filler *fil);
+bool			parse_map(t_filler *fil);
+void			print(t_filler *fil);
+void			free_map_and_piece(t_filler *fil);
+bool			parse_piece(t_filler *fil);
 
 #endif
