@@ -6,7 +6,7 @@
 /*   By: phuntik <phuntik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 17:40:23 by phuntik           #+#    #+#             */
-/*   Updated: 2020/06/04 19:38:34 by phuntik          ###   ########.fr       */
+/*   Updated: 2020/06/10 00:44:41 by phuntik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void		parse_player(t_filler *fil)
 			fil->player->me = 'X';
 			fil->player->en = 'O';
 		}
+		free(str);
 	}
 	print_in_file(0, str, -1);
-	free(str);
 	// print_in_file(0, "player:", -1);
 	// print_in_file(fil->player->me, "", -1);
 	// printf("player: ");
@@ -61,9 +61,9 @@ bool		parse_map_size(t_filler *fil)
 		// printf("%s\n", str);
 		print_in_file(0, str, -1);
 		print_in_file(0, "parse map size success", -1);
+		ft_free_arr(split);
+		free(str);
 	}
-	ft_free_arr(split);
-	free(str);
 	return (true);
 }
 
@@ -108,9 +108,9 @@ bool		parse_piece_size(t_filler *fil)
 		fil->piece->y = ft_atoi(split[1]);
 		fil->piece->x = ft_atoi(split[2]);
 		// printf("%s\n", str);
+		ft_free_arr(split);
+		free(str);
 	}
-	ft_free_arr(split);
-	free(str);
 	print_in_file(0, "parse piece size success", -1);
 	return (true);
 }
@@ -130,8 +130,8 @@ bool		parse_piece(t_filler *fil)
 			fil->piece->detal[i] = ft_strdup(str);
 				// printf("%s\n", fil->piece->detal[i]);
 			i++;
+			free(str);
 		}
-		free(str);
 	}
 	print_in_file(0, "parse piece success", -1);
 	return (true);
@@ -150,25 +150,35 @@ int		main()
 	// get_nex)t_line(0, &str);
 	open_file();
 	parse_player(fil);
-	// while (true)
-	// {	
-		// print_in_file(0, "zashlo", -1);
+	while (true)
+	{	
+		print_in_file(0, "zashlo", -1);
 		parse_map_size(fil);
+		print_in_file(0, "prohod 1", -1);
 		parse_map(fil);
+		print_in_file(0, "prohod 2", -1);
 		parse_piece_size(fil);
+		print_in_file(0, "prohod 3", -1);
 		parse_piece(fil);
+		print_in_file(0, "prohod 4", -1);
 		build_map(fil);
+		print_in_file(0, "prohod 5", -1);
 		build_heap_map(fil);
+		print_in_file(0, "prohod 6", -1);
 		get_detal(fil);
+		print_in_file(0, "prohod 7", -1);
 		try_place_detal(fil);
+		print_in_file(0, "prohod 8", -1);
 		find_min_score(fil);
+		print_in_file(0, "prohod 9", -1);
 		printf("%d %d\n", fil->piece->win_x, fil->piece->win_y);
 		print_in_file(0, "x:", fil->piece->win_x);
 		print_in_file(0, "y:", fil->piece->win_y);
 		fil->piece->win_x = 0;
 		fil->piece->win_y = 0;
 		all_free(fil);
-	// } 
+		print_in_file(0, "proshlo", -1);
+	} 
 	// while (parse_map_size(fil) == true
 	// && parse_map(fil) == true
  	// && parse_piece_size(fil) == true

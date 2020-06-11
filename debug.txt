@@ -1,7 +1,9 @@
 $$$ exec p1 : [./filler_rschmele]
 parse player success
+zashlo
 Plateau 15 17:
 parse map size success
+prohod 1
     01234567890123456
 000 .................
 001 .................
@@ -19,12 +21,23 @@ parse map size success
 013 .................
 014 .................
 parse map success
-Piece 2 2:
+prohod 2
+Piece 2 1:
 parse piece size success
-**
-.*
+prohod 3
+*
+*
 parse piece success
+prohod 4
+prohod 5
+prohod 6
+prohod 7
+prohod 8
+prohod 9
 x:
 8
 y:
 2
+proshlo
+zashlo
+prohod 1
