@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastasiaseliseva <anastasiaseliseva@st    +#+  +:+       +#+        */
+/*   By: phuntik <phuntik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 21:41:05 by anastasiase       #+#    #+#             */
-/*   Updated: 2020/06/11 22:11:37 by anastasiase      ###   ########.fr       */
+/*   Updated: 2020/06/17 18:06:47 by phuntik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,28 @@ int				main(void)
 
 	open_file();
 	fil = init_fil();
+	fil->score = init_score();
 	if (!(parse_fighter(fil)))
-		exit(0);
-	while (true)
-	{
+		exit(EXIT_FAILURE);
+	// while (true)
+	// {
 		fil->map = init_map();
 		parse_map(fil);
 		fil->piece = init_piece();
 		parse_piece(fil);
 		build_map(fil);
 		build_heap_map(fil);
-		// math_heatmap(fil);
-		// find_coords(fil);
+		print_in_file(0, "step 0\n", -1);
 		get_detal(fil);
+		print_in_file(0, "step 1\n", -1);
 		try_place_detal(fil);
-		find_min_score(fil);
+		print_in_file(0, "step 2\n", -1);
+		find_min_score_lst(fil);
+		print_in_file(0, "step 3\n", -1);
 		print(fil);
 		free_map_and_piece(fil);
-	}
+		print_in_file(0, "The End\n", -1);
+	// }
 	free(fil);
 	return (0);
 }

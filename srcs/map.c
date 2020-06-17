@@ -6,7 +6,7 @@
 /*   By: phuntik <phuntik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 19:12:10 by phuntik           #+#    #+#             */
-/*   Updated: 2020/06/02 19:03:31 by phuntik          ###   ########.fr       */
+/*   Updated: 2020/06/15 15:24:54 by phuntik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void		build_map(t_filler *fil)
 		while (j < fil->map->x)
 		{
 			if (fil->map->mapa[i][j] == fil->player->me || fil->map->mapa[i][j] == (fil->player->me + 32))
-				fil->map->hmap[i][j] = -1;
+				fil->map->hmap[i][j] = -3;
 			else if (fil->map->mapa[i][j] == fil->player->en || fil->map->mapa[i][j] == fil->player-> en + 32)
 			{
 				fil->map->hmap[i][j] = -2;
@@ -85,22 +85,22 @@ void		build_heap_map(t_filler *fil)
 		}
 		i++;
 	}
-	// k = 0;
-	// n = 0;
-	// printf("heap pmap\n");
-	// while (k < fil->map->y)
-	// {
-	// 	n = 0;
-	// 	while (n < fil->map->x)
-	// 	{
-	// 		printf("|%d", fil->map->hmap[k][n]);
-	// 		if(fil->map->hmap[k][n] <= 9 && fil->map->hmap[k][n] >= 0)
-	// 			printf(" ");
-	// 		n++;
-	// 	}
-	// 	printf("\n");
-	// 	k++;	
-	// }
+	k = 0;
+	n = 0;
+	print_in_file(0, "heap map\n", -1);
+	while (k < fil->map->y)
+	{
+		n = 0;
+		while (n < fil->map->x)
+		{
+			print_in_file(0, "|", fil->map->hmap[k][n]);
+			if(fil->map->hmap[k][n] <= 9 && fil->map->hmap[k][n] >= 0)
+				print_in_file(0, " ", -1);
+			n++;
+		}
+		print_in_file(0, "\n", -1);
+		k++;	
+	}
 	return ;
 }
 
@@ -156,8 +156,11 @@ int		ft_coord(t_filler *fil, int i, int j)
 		z++;
 		n++;
 	}
-	free(x);
-	free(y);
-	free(res);
+	if (x)
+		free(x);
+	if (y)
+		free(y);
+	if (res)
+		free(res);
 	return (min);
 }

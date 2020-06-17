@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastasiaseliseva <anastasiaseliseva@st    +#+  +:+       +#+        */
+/*   By: phuntik <phuntik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 17:48:31 by phuntik           #+#    #+#             */
-/*   Updated: 2020/06/11 22:15:18 by anastasiase      ###   ########.fr       */
+/*   Updated: 2020/06/17 18:14:39 by phuntik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,18 @@ t_player		*init_player()
 	player->en = 0;
 	player->me = 0;
 	return (player);
+}
+
+t_score			*init_score()
+{
+	t_score	*score;
+	
+	if (!(score = (t_score *)ft_memalloc(sizeof(t_score))))
+		exit(EXIT_FAILURE);
+	score->head = score;
+	score->next = NULL;
+	score->ii = 0;
+	score->jj = 0;
+	score->sum = 0;
+	return (score);
 }

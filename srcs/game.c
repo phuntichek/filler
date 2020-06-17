@@ -6,7 +6,7 @@
 /*   By: phuntik <phuntik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 19:02:42 by phuntik           #+#    #+#             */
-/*   Updated: 2020/06/02 19:04:29 by phuntik          ###   ########.fr       */
+/*   Updated: 2020/06/17 18:06:54 by phuntik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ void		get_detal(t_filler *fil)
 
 	i = 0;
 	j = 0;
-	fil->piece->hdetal = (int **)malloc(sizeof(int) * fil->piece->y);
+	print_in_file(0, "step 1.0\n", -1);
+	fil->piece->hdetal = (int **)malloc(sizeof(int *) * fil->piece->y);
 	while (i < fil->piece->y)
 	{
-		fil->piece->hdetal[i] = ft_memalloc(fil->piece->x);
+		fil->piece->hdetal[i] = (int *)ft_memalloc(sizeof(int) * (fil->piece->x));
 		i++;
 	}
 	i = 0;
@@ -33,7 +34,7 @@ void		get_detal(t_filler *fil)
 		{
 			if (fil->piece->detal[i][j] == '*')
 			{
-				fil->piece->hdetal[i][j] = -3;
+				fil->piece->hdetal[i][j] = -4;
 			}
 			else
 			{
@@ -44,6 +45,7 @@ void		get_detal(t_filler *fil)
 		}
 		i++;
 	}
+	print_in_file(0, "after while\n", -1);
 	// i = 0;
 	// j = 0;
 	// printf("kusochek: \n");
@@ -61,13 +63,11 @@ void		get_detal(t_filler *fil)
 	fil->piece->score = (int *)ft_memalloc(sizeof(int) * (fil->map->x * fil->map->y));
 	fil->piece->ii = (int *)ft_memalloc(sizeof(int) * (fil->map->x * fil->map->y));
 	fil->piece->jj = (int *)ft_memalloc(sizeof(int) * (fil->map->x * fil->map->y));
-	ft_bzero(fil->piece->score, (fil->map->x * fil->map->y));
-	ft_bzero(fil->piece->ii, (fil->map->x * fil->map->y));
-	ft_bzero(fil->piece->jj, (fil->map->x * fil->map->y));
 }
 
 void		try_place_detal(t_filler *fil)
 {
+	print_in_file(0, "step 2.0\n", -1);
 	int		i;
 	int		j;
 	
@@ -94,12 +94,14 @@ void		score_detali(t_filler *fil, int i, int j)
 	int		k;
 	int		n;
 	int		c;
+	int		e;
 	int		**kusok;
 	
 
 	k = 0;
 	n = 0;
 	c = 0;
+	e = 0;
 	kusok = (int **)malloc(sizeof(int *) * fil->piece->y);
 	while (k < fil->piece->y)
 	{
@@ -112,14 +114,10 @@ void		score_detali(t_filler *fil, int i, int j)
 		n = 0;
 		while (n < fil->piece->x)
 		{
-			if (fil->piece->hdetal[k][n] == -3)
+			if ((fil->piece->hdetal[k][n] == -4) && (k + i <= fil->map->y) && (n + j <= fil->map->x))
 			{
 				kusok[k][n] = fil->map->hmap[k + i][n + j];
 			}
-			// else
-			// {
-			// 	kusok[k][n] = 0;
-			// }
 			n++;
 		}
 		k++;
@@ -131,29 +129,27 @@ void		score_detali(t_filler *fil, int i, int j)
 		n = 0;
 		while (n < fil->piece->x)
 		{
-			if (kusok[k][n] == -1)
-			c++;
+			if (kusok[k][n] == -3)
+				c++;
+			if (kusok[k][n] == -2)
+				e++;
 			n++;
 		}
 		k++;
 	}
-	if (c == 1)
+	if (c == 1 && e == 0)
 	{
-		// k = 0;
-		// n = 0;
-		// printf("kusok: \n");
-		// while (k < fil->piece->y)
-		// {
-		// 	n = 0;
-		// 	while (n < fil->piece->x)
-		// 	{
-		// 		printf("|%d", kusok[k][n]);
-		// 		n++;
-		// 	}
-		// 	printf("\n");
-		// 	k++;
-		// }
-		note_min_score(fil, kusok, i, j);
+		note_min_score_lst(fil, kusok, i, j);
+	}
+	k = 0;
+	n = 0;
+	if (kusok)
+	{
+		while (k < fil->piece->y)
+		{
+			free(kusok[k]);
+			k++;
+		}
 	}
 	return ;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filler.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastasiaseliseva <anastasiaseliseva@st    +#+  +:+       +#+        */
+/*   By: phuntik <phuntik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 17:34:17 by phuntik           #+#    #+#             */
-/*   Updated: 2020/06/11 22:09:56 by anastasiase      ###   ########.fr       */
+/*   Updated: 2020/06/17 17:08:34 by phuntik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,28 @@ typedef struct	s_piece
 	char		**detal;
 }				t_piece;
 
+typedef struct		s_score
+{
+	int				sum;
+	int				ii;
+	int				jj;
+	struct s_score	*head;
+	struct s_score *next;
+}					t_score;
+
 typedef struct	s_filler
 {
 	t_player	*player;
 	t_map		*map;
 	t_piece		*piece;
+	t_score		*score;
 }				t_filler;
 
 t_filler		*init_fil();
 t_player		*init_player();
 t_map			*init_map();
 t_piece			*init_piece();
+t_score			*init_score();
 void			build_map(t_filler *fil);
 void			build_heap_map(t_filler *fil);
 int				ft_coord(t_filler *fil, int i, int j);
@@ -78,5 +89,7 @@ bool			parse_map(t_filler *fil);
 void			print(t_filler *fil);
 void			free_map_and_piece(t_filler *fil);
 bool			parse_piece(t_filler *fil);
+void			note_min_score_lst(t_filler *fil, int **kusok, int i, int j);
+void			find_min_score_lst(t_filler *fil);
 
 #endif
