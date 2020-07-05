@@ -6,7 +6,7 @@
 /*   By: phuntik <phuntik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 17:48:31 by phuntik           #+#    #+#             */
-/*   Updated: 2020/06/17 18:14:39 by phuntik          ###   ########.fr       */
+/*   Updated: 2020/06/17 18:38:52 by phuntik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_filler		*init_fil()
 		exit(EXIT_FAILURE);
 	fill->player->en = 0;
 	fill->player->me = 0;
+	fill->head = NULL;
 	return (fill);
 }
 
@@ -67,7 +68,6 @@ t_score			*init_score()
 	
 	if (!(score = (t_score *)ft_memalloc(sizeof(t_score))))
 		exit(EXIT_FAILURE);
-	score->head = score;
 	score->next = NULL;
 	score->ii = 0;
 	score->jj = 0;

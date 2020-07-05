@@ -6,7 +6,7 @@
 /*   By: phuntik <phuntik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 19:02:42 by phuntik           #+#    #+#             */
-/*   Updated: 2020/06/17 18:06:54 by phuntik          ###   ########.fr       */
+/*   Updated: 2020/06/18 17:29:35 by phuntik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,8 @@ void		score_detali(t_filler *fil, int i, int j)
 	}
 	if (c == 1 && e == 0)
 	{
+		fil->score->next = (t_score *)malloc(sizeof(t_score));
+		fil->score = fil->score->next;
 		note_min_score_lst(fil, kusok, i, j);
 	}
 	k = 0;

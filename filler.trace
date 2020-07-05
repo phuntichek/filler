@@ -1,4 +1,6 @@
-seed = 8045
+seed = 7702
+O: error on input
+./filler_rschmele: Segfault at 157
 ./filler_rschmele won
 Score:
-144AGAINST20
+157AGAINST23

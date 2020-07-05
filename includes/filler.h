@@ -6,7 +6,7 @@
 /*   By: phuntik <phuntik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 17:34:17 by phuntik           #+#    #+#             */
-/*   Updated: 2020/06/17 17:08:34 by phuntik          ###   ########.fr       */
+/*   Updated: 2020/06/17 18:33:16 by phuntik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ typedef struct		s_score
 	int				sum;
 	int				ii;
 	int				jj;
-	struct s_score	*head;
 	struct s_score *next;
 }					t_score;
 
@@ -63,6 +62,7 @@ typedef struct	s_filler
 	t_map		*map;
 	t_piece		*piece;
 	t_score		*score;
+	t_score		*head;
 }				t_filler;
 
 t_filler		*init_fil();

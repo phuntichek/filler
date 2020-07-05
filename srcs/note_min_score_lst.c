@@ -6,7 +6,7 @@
 /*   By: phuntik <phuntik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 18:29:02 by phuntik           #+#    #+#             */
-/*   Updated: 2020/06/17 18:09:53 by phuntik          ###   ########.fr       */
+/*   Updated: 2020/06/18 18:38:19 by phuntik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		note_min_score_lst(t_filler *fil, int **kusok, int i, int j)
 	k = 0;
 	n = 0;
 	sum = 0;
-	printf("zashlo");
+	print_in_file(0, "zashlo\n", -1);
 	while (k < fil->piece->y)
 	{
 		n = 0;
@@ -32,12 +32,20 @@ void		note_min_score_lst(t_filler *fil, int **kusok, int i, int j)
 		}
 		k++;
 	}
-	printf("first");
+	print_in_file(0, "first\n", -1);
+	if (fil->head == NULL)
+		fil->head = fil->score;
 	fil->score->sum = sum;
 	fil->score->ii = i;
 	fil->score->jj = j;
-	fil->score->next = (t_score *)malloc(sizeof(t_score));
-	fil->score = fil->score->next;
+	fil->score->next = NULL;
+	print_in_file(0, "sum = ", fil->score->sum);
+	print_in_file(0, "\n", -1);
+	print_in_file(0, "i = ", fil->score->ii);
+	print_in_file(0, "\n", -1);
+	print_in_file(0, "j = ", fil->score->jj);
+	print_in_file(0, "\n", -1);
+	print_in_file(0, "konets func\n", -1);
 }
 
 void		find_min_score_lst(t_filler *fil)
@@ -45,30 +53,34 @@ void		find_min_score_lst(t_filler *fil)
 	int		tmp;
 	int		i;
 	
-	tmp = 0;
 	i = 0;
-	fil->score = fil->score->head;
+	fil->score = fil->head;
 	tmp = fil->score->sum;
-	while (fil->score->next)
+	print_in_file(0, "pered ciklom\n", -1);
+	while (fil->score->next != NULL)
 	{
-		if (tmp > fil->score->sum)
+		if (tmp > fil->score->sum && fil->score->sum != 0)
 		{
 			tmp = fil->score->sum;
 		}
 		fil->score = fil->score->next;
 		i++;
+		print_in_file(0, "tmp = ", tmp);
+		print_in_file(0, "\n", -1);
+		print_in_file(0, "sum: ", fil->score->sum);
+		print_in_file(0, "\n", -1);
 	}
-	printf("second");
-	fil->score = fil->score->head;
+	print_in_file(0, "second\n", -1);
+	fil->score = fil->head;
 	while (fil->score->next)
 	{
 		if (fil->score->sum == tmp)
 		{
 			fil->piece->win_x = fil->score->ii;
 			fil->piece->win_y = fil->score->jj;
-			break ;
 		}
+		fil->score = fil->score->next;
 	}
-	printf("end");
+	print_in_file(0, "end\n", -1);
 	return ;
 }

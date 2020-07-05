@@ -6,7 +6,7 @@
 /*   By: phuntik <phuntik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 21:41:05 by anastasiase       #+#    #+#             */
-/*   Updated: 2020/06/17 18:06:47 by phuntik          ###   ########.fr       */
+/*   Updated: 2020/06/17 21:04:09 by phuntik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int				main(void)
 
 	open_file();
 	fil = init_fil();
-	fil->score = init_score();
 	if (!(parse_fighter(fil)))
 		exit(EXIT_FAILURE);
-	// while (true)
-	// {
+	while (true)
+	{
+		fil->score = init_score();
 		fil->map = init_map();
 		parse_map(fil);
 		fil->piece = init_piece();
@@ -40,7 +40,7 @@ int				main(void)
 		print(fil);
 		free_map_and_piece(fil);
 		print_in_file(0, "The End\n", -1);
-	// }
+	}
 	free(fil);
 	return (0);
 }

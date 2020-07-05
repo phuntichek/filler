@@ -6,7 +6,7 @@
 /*   By: phuntik <phuntik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 18:31:07 by phuntik           #+#    #+#             */
-/*   Updated: 2020/06/14 19:42:59 by phuntik          ###   ########.fr       */
+/*   Updated: 2020/06/18 18:27:25 by phuntik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,22 @@ static void		free_hpiece(t_piece *piece)
 		free(piece->score);	
 }
 
+void		free_score(t_score *score, t_filler *fil)
+{
+	score = fil->head;
+	while (score->next)
+	{
+		score->sum = 0;
+		score->ii = 0;
+		score->jj = 0;
+		free(score);
+		print_in_file(0, "free", -1);
+		score = score->next;
+	}
+	// free(score);
+	fil->head = NULL;
+}
+
 void			free_map_and_piece(t_filler *fil)
 {
 	free_heatmap(fil->map);
@@ -131,4 +147,6 @@ void			free_map_and_piece(t_filler *fil)
 	free_hpiece(fil->piece);
 	free(fil->piece);
 	fil->piece = NULL;
+	free_score(fil->score, fil);
+	free(fil->score);
 }
