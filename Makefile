@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: phuntik <phuntik@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/03/03 13:14:23 by fmelda            #+#    #+#              #
-#    Updated: 2020/06/17 16:54:39 by phuntik          ###   ########.fr        #
+#    Created: 2020/08/06 16:17:00 by phuntik           #+#    #+#              #
+#    Updated: 2020/08/06 16:17:19 by phuntik          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME	=		filler_rschmele
 
 # ------------  DIRECTORIES  ------------------------------------------------- #
-SRC_DIR	=		srcs
+SRC_DIR	=		src
 HDR_DIR	=		includes
 OBJ_DIR	=		objs
 
@@ -24,14 +24,14 @@ LFT_DIR	=		libft
 LHS_DIR	=		$(LFT_DIR)
 
 # ------------  SOURCE FILES  ------------------------------------------------ #
-SRC_FLS	=		main.c  \
-				init.c  \
-				map.c   \
-				game.c  \
-				print.c \
-				free.c  \
-				parse.c \
-				note_min_score_lst.c \
+SRC_FLS	=		main.c \
+			 	init.c \
+			 	free.c \
+			 	parse_fighter.c \
+			 	parse_map.c \
+			 	parse_piece.c \
+			 	solution.c \
+			 	heatmap.c
 
 # ------------  FILEPATHS  --------------------------------------------------- #
 SRCS	=		$(addprefix $(SRC_DIR)/, $(SRC_FLS))
@@ -45,7 +45,7 @@ CFLGS	=		-Wall -Werror -Wextra
 IFLGS	=		-I $(HDR_DIR) -I $(LHS_DIR)
 LFLGS	=		-L $(LFT_DIR) -lft
 DFLGS	=		-MMD -MP
-DEBUG	=		-g
+DEBUG	=		-g -pg -fsanitize=address
 
 # ------------  RULES  ------------------------------------------------------- #
 .PHONY: all clean fclean re
@@ -58,14 +58,14 @@ $(LFT_DIR)/$(LFT):
 
 -include $(DEPS)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	@$(CC) $(DFLGS) -g -c -o $@ $< $(IFLGS)
+	@$(CC) $(CFLGS) $(DFLGS) -c -o $@ $< $(IFLGS)
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
 $(NAME): $(LFT_DIR)/$(LFT) $(OBJS)
 	@echo "\x1b[1m\nBuilding $(NAME)...\x1b[0m"
-	$(CC) -g -o $(NAME) $(OBJS) $(LFLGS)
+	$(CC) -o $(NAME) $(OBJS) $(LFLGS)
 
 clean:
 	@echo "\x1b[1m\nCleaning...\x1b[0m"

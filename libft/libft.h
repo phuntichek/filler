@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phuntik <phuntik@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmelda <fmelda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 16:57:26 by cvados            #+#    #+#             */
-/*   Updated: 2020/04/16 17:15:19 by phuntik          ###   ########.fr       */
+/*   Updated: 2020/02/13 15:29:40 by fmelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <sys/uio.h>
 # include <fcntl.h>
 # define BUFF_SIZE 1
-# include <stdio.h>
 
 typedef	struct		s_list
 {
@@ -53,7 +52,7 @@ char				*ft_strcpy(char *dest, const char *src);
 char				*ft_strdup(const char *src);
 char				*ft_strncpy(char *dest, const char *src, unsigned int n);
 char				*ft_strchr(const char *str, int ch);
-char				*ft_strrchr(const char *str, int c);
+char				*ft_strrchr(const char *string, int c);
 char				*ft_strstr(const char *haystack, const char *needle);
 char				*ft_itoa(int n);
 char				*ft_strnew(size_t size);
@@ -109,8 +108,5 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					get_next_line(const int fd, char **line);
-int					ft_is_number(char *str);
-void				*ft_realloc(void *ptr, size_t size);
-void				ft_lstpushback(t_list **start, t_list *new);
 
 #endif

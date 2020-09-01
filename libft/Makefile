@@ -6,7 +6,7 @@
 #    By: fmelda <fmelda@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/07 19:10:52 by fmelda            #+#    #+#              #
-#    Updated: 2020/03/11 16:06:15 by fmelda           ###   ########.fr        #
+#    Updated: 2020/01/21 14:51:16 by fmelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,7 @@ SRCS=ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c \
 	ft_putchar.c ft_putstr.c ft_putendl.c ft_putnbr.c ft_putchar_fd.c \
 	ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 	ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c \
-	ft_lstiter.c ft_lstmap.c ft_swap.c ft_foreach.c ft_putrstr.c ft_sqrt.c get_next_line.c ft_free_arr.c ft_len_arr.c \
-	ft_is_number.c ft_realloc.c ft_lstpushback.c
+	ft_lstiter.c ft_lstmap.c ft_swap.c ft_foreach.c ft_putrstr.c ft_sqrt.c get_next_line.c ft_free_arr.c ft_len_arr.c
 OBJS=ft_memset.o ft_bzero.o ft_memcpy.o ft_memccpy.o \
 	ft_memmove.o ft_memchr.o ft_memcmp.o ft_memalloc.o ft_memdel.o \
 	ft_strlen.o ft_strdup.o ft_strcpy.o ft_strncpy.o ft_strcat.o ft_strncat.o \
@@ -46,8 +45,7 @@ OBJS=ft_memset.o ft_bzero.o ft_memcpy.o ft_memccpy.o \
 	ft_putchar.o ft_putstr.o ft_putendl.o ft_putnbr.o ft_putchar_fd.o \
 	ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o \
 	ft_lstnew.o ft_lstdelone.o ft_lstdel.o ft_lstadd.o \
-	ft_lstiter.o ft_lstmap.o ft_swap.o ft_foreach.o ft_putrstr.o ft_sqrt.o get_next_line.o ft_free_arr.o ft_len_arr.o \
-	ft_is_number.o ft_realloc.o ft_lstpushback.o
+	ft_lstiter.o ft_lstmap.o ft_swap.o ft_foreach.o ft_putrstr.o ft_sqrt.o get_next_line.o ft_free_arr.o ft_len_arr.o
 
 $(NAME):
 	$(CC) $(CFLAGS) -c $(SRCS) -I $(INCL)
